@@ -5,7 +5,7 @@
 A full-stack Customer Relationship Management system built for small sales teams — manage leads, track pipelines, collaborate on opportunities, and close more deals.
 
 <p align="center">
-  <img src="./public/leadgen.png" alt="LeadGen Logo" width="600">
+  <img src="./frontend/public/leadgen.png" alt="LeadGen Logo" width="600">
 </p>
 
 ![Next.js](https://img.shields.io/badge/Next.js%2014-black?style=flat-square&logo=next.js)
@@ -40,7 +40,7 @@ LeadGen CRM is a production-ready Customer Relationship Management system built 
 
 The system supports two user roles with distinct permissions: **Admins** who oversee the entire pipeline and manage the sales team, and **Salespersons** who manage their own assigned leads. Every status transition is tracked historically, giving managers visibility into pipeline velocity and bottlenecks.
 
-**Live Demo:** [https://your-crm.vercel.app](https://your-crm.vercel.app)
+**Live Demo:** [https://leadgen-crm-plum.vercel.app/login](https://leadgen-crm-plum.vercel.app)
 
 > Login with the test credentials below — no account creation needed.
 
@@ -50,16 +50,16 @@ The system supports two user roles with distinct permissions: **Admins** who ove
 
 ### Frontend
 
-| Layer                | Technology                                           |
-| :------------------- | :--------------------------------------------------- |
-| **Framework**        | Next.js 14 (App Router)                              |
-| **State Management** | Zustand (auth state) + TanStack Query (server state) |
-| **Styling**          | Tailwind CSS with custom design system               |
-| **UI Components**    | Shadcn/UI                                            |
-| **Forms**            | React Hook Form + Zod                                |
-| **Charts**           | Recharts                                             |
-| **Drag & Drop**      | @hello-pangea/dnd                                    |
-| **Icons**            | Lucide React                                         |
+| Layer                | Technology                             |
+| :------------------- | :------------------------------------- |
+| **Framework**        | Next.js 14 (App Router)                |
+| **State Management** | Zustand (auth state)                   |
+| **Styling**          | Tailwind CSS with custom design system |
+| **UI Components**    | Shadcn/UI                              |
+| **Validation**       | Manual Frontend + Backend validator    |
+| **Charts**           | Recharts                               |
+| **Drag & Drop**      | @hello-pangea/dnd                      |
+| **Icons**            | Lucide React                           |
 
 ### Backend
 
@@ -73,11 +73,13 @@ The system supports two user roles with distinct permissions: **Admins** who ove
 
 ### Database & Infrastructure
 
-| Layer             | Technology                             |
-| :---------------- | :------------------------------------- |
-| **Database**      | PostgreSQL (Local) / Neon (Production) |
-| **Backend Host**  | Railway                                |
-| **Frontend Host** | Vercel                                 |
+| Layer             | Technology                                   |
+| :---------------- | :------------------------------------------- |
+| **Database**      | PostgreSQL (Local) / **Neon DB** (Production) |
+| **Backend Host**  | **AWS EC2 (t3.micro)** + Nginx Proxy         |
+| **Frontend Host** | **Vercel**                                   |
+| **SSL/TLS**       | Let's Encrypt (Certbot)                      |
+| **DNS**           | DuckDNS                                      |
 
 ---
 
@@ -304,7 +306,7 @@ Rather than trusting the frontend to send the correct `assignedToId`, the backen
 Storing the refresh token in an HttpOnly cookie (inaccessible to JavaScript) and keeping the access token only in memory (Zustand, never localStorage) follows current security best practice. The Axios interceptor handles silent refresh invisibly, so the user never experiences an unexpected logout mid-session.
 
 **4. Validation at every layer**
-Class-validator on DTOs with `whitelist: true` and `forbidNonWhitelisted: true` strips unexpected fields before they reach the service layer. Zod on the frontend validates forms before a request is ever sent. Both layers failing gracefully means the system is predictable under unexpected input.
+Class-validator on DTOs with `whitelist: true` and `forbidNonWhitelisted: true` strips unexpected fields before they reach the service layer. On the frontend, custom validation logic (like the Sri Lankan phone format check) ensures data integrity before submission. This dual-layer approach makes the system predictable and robust.
 
 **5. What I would do differently with more time**
 I would add WebSocket support for real-time pipeline updates, a proper email notification system for lead assignments, and end-to-end tests covering the auth flow and lead lifecycle. I would also extract the dashboard aggregations into a dedicated reporting service with caching as the dataset grows.

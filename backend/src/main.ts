@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
@@ -21,7 +22,7 @@ async function bootstrap() {
   app.useGlobalInterceptors(new ResponseInterceptor());
 
   app.enableCors({
-    origin: process.env.FRONTEND_URL,
+    origin: process.env.CORS_ORIGIN || process.env.FRONTEND_URL || '*',
     credentials: true,
   });
 
