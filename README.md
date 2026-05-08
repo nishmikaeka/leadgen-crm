@@ -186,6 +186,7 @@ npx prisma generate
 # Apply all migrations to your local database
 npx prisma migrate deploy
 
+
 # Seed the database with test users and sample leads
 npx prisma db seed
 
@@ -200,7 +201,7 @@ Backend runs at `http://localhost:3001`
 ```bash
 cd frontend
 npm install
-cp .env.local.example .env.local
+cp .env.local.example .env.local  # Create local environment config
 npm run dev
 ```
 
