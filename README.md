@@ -21,16 +21,16 @@ A full-stack Customer Relationship Management system built for small sales teams
 
 ## Table of Contents
 
-- [Project Overview](#-project-overview)
-- [Tech Stack](#-tech-stack)
-- [Features Implemented](#-features-implemented)
-- [How to Run Locally](#-how-to-run-locally)
-- [Environment Variables](#-environment-variables)
-- [Test Login Credentials](#-test-login-credentials)
-- [Database Setup](#-database-setup)
-- [Known Limitations](#-known-limitations)
-- [Reflection](#-reflection)
-- [Demo Video](#-demo-video)
+- [Project Overview](#project-overview)
+- [Tech Stack](#tech-stack)
+- [Features Implemented](#features-implemented)
+- [How to Run Locally](#how-to-run-locally)
+- [Environment Variables](#environment-variables)
+- [Test Login Credentials](#test-login-credentials)
+- [Database Setup](#database-setup)
+- [Known Limitations](#known-limitations)
+- [Reflection](#reflection)
+- [Demo Video](#demo-video)
 
 ---
 
@@ -73,17 +73,17 @@ The system supports two user roles with distinct permissions: **Admins** who ove
 
 ### Database & Infrastructure
 
-| Layer             | Technology                                   |
-| :---------------- | :------------------------------------------- |
+| Layer             | Technology                                    |
+| :---------------- | :-------------------------------------------- |
 | **Database**      | PostgreSQL (Local) / **Neon DB** (Production) |
-| **Backend Host**  | **AWS EC2 (t3.micro)** + Nginx Proxy         |
-| **Frontend Host** | **Vercel**                                   |
-| **SSL/TLS**       | Let's Encrypt (Certbot)                      |
-| **DNS**           | DuckDNS                                      |
+| **Backend Host**  | **AWS EC2 (t3.micro)** + Nginx Proxy          |
+| **Frontend Host** | **Vercel**                                    |
+| **SSL/TLS**       | Let's Encrypt (Certbot)                       |
+| **DNS**           | DuckDNS                                       |
 
 ---
 
-## ✨ Features Implemented
+## Features Implemented
 
 ### Authentication
 
@@ -126,7 +126,8 @@ The system supports two user roles with distinct permissions: **Admins** who ove
 ### Admin Features
 
 - Create salesperson accounts
-- Bulk import leads from CSV / Excel with automatic round-robin assignment across the sales team
+- **Bulk Import Leads:** Admins can upload CSV or Excel files. A sample data file `mock_leads.xlsx` is provided in the root directory for demonstration.
+- **Round-Robin Assignment:** During bulk import, you can select multiple salespersons, and the system will automatically distribute the leads evenly among them.
 
 ### UI/UX Polish
 
@@ -152,7 +153,7 @@ The system supports two user roles with distinct permissions: **Admins** who ove
 
 Visit the deployed application — no local setup required.
 
-**URL:** [https://your-crm.vercel.app](https://your-crm.vercel.app)
+**URL:** [https://leadgen-crm-plum.vercel.app/login](https://leadgen-crm-plum.vercel.app/login)
 
 Use the test credentials listed below to log in immediately.
 
@@ -161,7 +162,7 @@ Use the test credentials listed below to log in immediately.
 **1. Clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/leadgen-crm.git
+git clone https://github.com/nishmikaeka/leadgen-crm.git
 cd leadgen-crm
 ```
 
@@ -197,7 +198,7 @@ Frontend runs at `http://localhost:3000`
 
 ---
 
-## 🔐 Environment Variables
+## Environment Variables
 
 ### Backend — `backend/.env`
 
@@ -230,7 +231,7 @@ NEXT_PUBLIC_API_URL="http://localhost:3001"
 
 ---
 
-## 🔑 Test Login Credentials
+## Test Login Credentials
 
 | Role            | Email               | Password      |
 | :-------------- | :------------------ | :------------ |
@@ -242,7 +243,7 @@ The Admin account has full access to all leads, team management, and the seed da
 
 ---
 
-## 🗄 Database Setup
+## Database Setup
 
 ### Schema Overview
 
