@@ -21,8 +21,10 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalInterceptors(new ResponseInterceptor());
 
+  console.log('🚀 API Starting... CORS_ORIGIN:', process.env.FRONTEND_URL || 'NOT SET (allowing all)');
+
   app.enableCors({
-    origin: process.env.CORS_ORIGIN || process.env.FRONTEND_URL || '*',
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   });
 
