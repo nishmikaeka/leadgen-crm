@@ -4,7 +4,7 @@ import { Role, LeadStatus } from '@prisma/client';
 
 @Injectable()
 export class DashboardService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   async getStats(
     userId: string,

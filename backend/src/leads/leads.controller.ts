@@ -25,7 +25,7 @@ import { CurrentUser } from '../auth/decorators/current-user.decorator';
 @Controller('leads')
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class LeadsController {
-  constructor(private readonly leadsService: LeadsService) {}
+  constructor(private readonly leadsService: LeadsService) { }
 
   @Post()
   async create(@Body() createLeadDto: CreateLeadDto, @CurrentUser() user: any) {

@@ -145,7 +145,7 @@ The system supports two user roles with distinct permissions: **Admins** who ove
 
 ### Prerequisites
 
-- Node.js v18+
+- Node.js **v20.19+** (required by Prisma 7)
 - PostgreSQL installed and running locally
 - npm v9+
 
@@ -174,18 +174,28 @@ npm install
 cp .env.local.example .env
 ```
 
-Edit `.env` and confirm your local PostgreSQL credentials match (see Environment Variables below).
+Edit `.env` and fill in your local PostgreSQL credentials (see [Environment Variables](#environment-variables) below).
 
 ```bash
+# Create the database
 createdb leadgen_db
+
+# Generate the Prisma Client (required — client is no longer auto-generated in Prisma 7)
+npx prisma generate
+
+# Apply all migrations to your local database
 npx prisma migrate deploy
+
+# Seed the database with test users and sample leads
 npx prisma db seed
+
+# Start the backend dev server
 npm run start:dev
 ```
 
 Backend runs at `http://localhost:3001`
 
-**3. Frontend setup** (new terminal)
+**3. Frontend setup** (open a new terminal)
 
 ```bash
 cd frontend
@@ -266,6 +276,9 @@ The database follows a relational model with four core tables:
 ### Running Migrations Locally
 
 ```bash
+# Generate the Prisma Client (always run this first after cloning)
+npx prisma generate
+
 # Apply all existing migrations to your local database
 npx prisma migrate deploy
 
@@ -275,7 +288,7 @@ npx prisma db seed
 
 The seed script creates 3 users (1 Admin, 2 Salespersons), 10 sample leads across all statuses, notes per lead, and status history records — so the dashboard and charts show meaningful data immediately.
 
-> **Note:** Use `prisma migrate deploy` (not `migrate dev`) when setting up locally from this repo. The migration files are committed and ready to apply — no generation step needed.
+> **Note:** Use `prisma migrate deploy` (not `migrate dev`) when setting up locally from this repo. Always run `npx prisma generate` first — in Prisma 7 the client is generated to `src/generated/prisma` and is not included in the repository.
 
 ### Indexes
 

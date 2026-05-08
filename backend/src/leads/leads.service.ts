@@ -7,7 +7,7 @@ import * as XLSX from 'xlsx';
 
 @Injectable()
 export class LeadsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   async create(createLeadDto: CreateLeadDto, currentUserId: string) {
     const status = createLeadDto.status || LeadStatus.NEW;
