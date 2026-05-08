@@ -30,7 +30,6 @@ A full-stack Customer Relationship Management system built for small sales teams
 - [Database Setup](#database-setup)
 - [Known Limitations](#known-limitations)
 - [Reflection](#reflection)
-- [Demo Video](#demo-video)
 
 ---
 
@@ -135,7 +134,6 @@ The system supports two user roles with distinct permissions: **Admins** who ove
 - Empty states with actionable prompts (not blank tables)
 - Toast notifications for every create, update, and delete action
 - Confirmation dialog before any destructive action
-- Lead aging badge — highlights leads stuck in `NEW` status for over 24 hours
 - Kanban pipeline board with drag-and-drop status updates
 - Color-coded status badges across all views
 
@@ -328,9 +326,3 @@ Class-validator on DTOs with `whitelist: true` and `forbidNonWhitelisted: true` 
 I would add WebSocket support for real-time pipeline updates, a proper email notification system for lead assignments, and end-to-end tests covering the auth flow and lead lifecycle. I would also extract the dashboard aggregations into a dedicated reporting service with caching as the dataset grows.
 
 ---
-
-## Demo Video
-
-[Watch the demo on Loom / YouTube](#)
-
-The video covers: running the project locally, login flow, dashboard walkthrough, creating and editing a lead, updating lead status, adding notes, filtering leads, and a brief explanation of the backend architecture and database design.
