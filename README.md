@@ -171,13 +171,14 @@ cd leadgen-crm
 ```bash
 cd backend
 npm install
-cp .env.local.example .env
+cp .env.example .env
 ```
 
 Edit `.env` and fill in your local PostgreSQL credentials (see [Environment Variables](#environment-variables) below).
 
 ```bash
 # Create the database
+#Create manually if psql path is not enabled
 createdb leadgen_db
 
 # Generate the Prisma Client (required — client is no longer auto-generated in Prisma 7)
@@ -185,6 +186,7 @@ npx prisma generate
 
 # Apply all migrations to your local database
 npx prisma migrate deploy
+
 
 # Seed the database with test users and sample leads
 npx prisma db seed
@@ -200,7 +202,7 @@ Backend runs at `http://localhost:3001`
 ```bash
 cd frontend
 npm install
-cp .env.local.example .env.local
+cp .env.local.example .env.local  # Create local environment config
 npm run dev
 ```
 
